@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/login.js" defer></script>
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <form action="../php/login.php" method="post">
+        <h1>Faça seu Login</h1>
+
+        <div class="dados">
+            <div class="dado">
+                <img src="../images/carta.png" alt="imagem de uma carta">
+                <input type="email" name="txtEmail" placeholder="Email" required>
+            </div>
+            <div class="dado">
+                <img src="../images/cadeado.png" alt="imagem de um cadeado">
+                <input type="password" name="txtSenha" id="senha" placeholder="Senha" required>
+                <button type="button" class="revelar-senha">
+                    <img src="../images/olho-fechado.png" id="imagem-senha" alt="imagem de um olho">
+                </button>
+            </div>
+        </div>
+
+        <button class="btn-enviar">Login</button>
+
+        <div class="link">
+            <a href="#">Esqueci a senha</a>
+            <a href="cadastro.html">Cadastrar</a>
+        </div>
+    </form>
+</body>
+</html>

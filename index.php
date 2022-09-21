@@ -1,0 +1,158 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
+    <script src="src/js/index.js" defer></script>
+    <link rel="shortcut icon" href="src/images/ICONE.png" type="image/x-icon">
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/index.css">
+    <title>New Story</title>
+</head>
+<body>
+    <nav class="navegacao">
+        <div class="navegacao-menu">
+            <ul>
+                <li>
+                    <a href="index.php">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <?php
+                if(isset($_SESSION['usrID'])){
+                ?>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Configurações</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="src/php/cadastro-livro-tela.php">
+                        <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
+                        <span class="title">Cadastrar Livro</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                        <span class="title">Favoritos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="duplicate-outline"></ion-icon></span>
+                        <span class="title">Autores seguidos</span>
+                    </a>
+                </li>
+                <?php
+                }
+                ?>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="menu">
+            <button class="menu-button" id="menu-button">
+                <div></div>
+            </button>
+            <img class="logo" src="src/images/logo.png" alt="logo do site">
+            <label>New Story</label>
+        </div>
+
+        <div class="container-pesquisa">
+            <button class="btn-voltar">
+                <img src="src/images/voltar.png" alt="seta voltar">
+            </button>
+            <div class="pesquisa">
+                <img src="src/images/lupa.png" alt="imagem de uma lupa">
+                <input type="text" placeholder="Pesquise seu livro, autor ou gênero" onkeyup="carregarConteudo(this.value)" />
+                <span id="resultado-pesquisa"></span>
+            </div>
+        </div>
+
+        <div class="itens">
+            <button class="aparece-pesquisa">
+                <img src="src/images/lupa.png" alt="imagem de uma lupa">
+            </button>
+
+            <?php
+            if(!isset($_SESSION['usrID'])){
+            ?>
+            <ul>
+                <a href="src/html/login.html"><li>Login</li></a>
+                <a href="src/html/cadastro.html"><li>Cadastro</li></a>
+            </ul>
+            <?php
+            }
+            else{
+            ?>
+            <button class="perfil"></button>
+            <div class="perfil-menu">
+                <div class="foto-perfil">Foto de perfil</div>
+                <h5>Olá, <?php echo $_SESSION['usrNome'] ?></h5>
+                <hr>
+                <a class="gerenciar" href="src/html/gerenciar-conta.html">Gerenciar sua Conta</a>
+                <a class="gerenciar" href="#">Gerenciar seus Livros</a>
+                <a class="sair" href="src/php/logout.php">Sair</a>
+            </div>
+            <?php
+            }
+            ?>
+        </div>
+    </header>
+
+    <main>
+        <section class="slider-livro">
+            <div class="setas">
+                <button>
+                    <img src="src/images/seta-esquerda.png" alt="seta esquerda">
+                </button>
+
+                <label>Livros que estão em andamento</label>
+
+                <button>
+                    <img src="src/images/seta-direita.png" alt="seta direita">
+                </button>
+            </div>
+
+            <div class="imagens">
+                <div class="selecao"></div>
+                <div class="selecao"></div>
+                <div class="selecao"></div>
+                <div class="selecao"></div>
+                <div class="selecao"></div>
+            </div>
+        </section>
+
+        <section class="livros">
+            <?php
+                //$oCon = mysqli_connect('localhost', 'root', '', 'new story');
+                $oCon = mysqli_connect('localhost', 'id19604355_diogo', '<+fucHF3_TDjDDgf', 'id19604355_new_story');
+                $cSQL = "SELECT livID, livCapa FROM livro";
+            
+                $oDados = mysqli_query($oCon, $cSQL);
+                
+                while($vReg = mysqli_fetch_assoc($oDados)){
+                    echo "<div class='livro'>".
+                    "  <div><img src='src/".$vReg['livCapa']."' alt='capa do livro'></div>".
+                    "  <a href='src/php/tela-livro.php?id=".$vReg['livID']."'><button>Ver mais</button></a>".
+                    "</div>";
+                }
+
+                mysqli_free_result($oDados);
+    
+                mysqli_close($oCon);
+            ?>
+        </section>
+    </main>
+</body>
+</html>

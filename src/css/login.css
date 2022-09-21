@@ -1,0 +1,114 @@
+body{
+    background-color: #612034;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form{
+    width: 392px;
+    height: 540px;
+    text-align: center;
+    background: #872D48;
+    border-radius: 32px;
+}
+
+h1{
+    font-weight: 300;
+    font-size: 40px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    color: white;
+}
+
+.dados{
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+.dado{
+    background-color: #A44964;
+    width: 300px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 8px;
+}
+
+input{
+    background: none;
+    border: none;
+    height: 150%;
+    width: 100%;
+    font-size: 15px;
+    color: white;
+    outline: none;
+}
+
+::placeholder{
+    color: #FFFFFF;
+}
+
+.revelar-senha{
+    background: none;
+    border: none;
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 40px;
+    margin-right: -10px;
+    cursor: pointer;
+}
+
+.revelar-senha:hover{
+    background-color: #B55A75;
+}
+
+.revelar-senha img{
+    width: 20px;
+    height: 20px;
+}
+
+.btn-enviar{
+    background-color: #AD395C;
+    width: 166px;
+    height: 52px;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    transition: all 200ms ease-out;
+}
+
+.btn-enviar:hover{
+    color: #AD395C;
+    background-color: white;
+}
+
+.link{
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    margin-left: 126px;
+    gap: 10px;
+}
+
+a{
+    color: white;
+    font-size: 17px;
+}
+
+a:active{
+    color: #400012;
+}

@@ -1,0 +1,491 @@
+body{
+    background-color: #424242;
+}
+
+/* -------- NAVEGAÇÂO -------- */
+.navegacao{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    transition: all 400ms;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.navegacao-menu{
+    background-color: #424242;
+    width: 100%;
+    max-width: 280px;
+    height: 100%;
+    transform: translateX(-280px);
+    transition: transform 300ms;
+    overflow: hidden;
+}
+
+.navegacao-menu ul{
+    position: absolute;
+    width: calc(100% - 20px);
+    list-style: none;
+    margin-left: 20px;
+}
+
+.navegacao-menu ul li{
+    position: relative;
+    width: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.navegacao-menu ul li:hover{
+    background-color: #872D48;
+}
+
+.navegacao-menu ul li:hover::before{
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border-bottom-right-radius: 20px;
+    box-shadow: 7.5px 7.5px 0 7.5px #872D48;
+}
+
+.navegacao-menu ul li:hover::after{
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 7.5px -7.5px 0 7.5px #872D48;
+}
+
+.navegacao-menu ul li a{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.navegacao-menu ul li:hover a{
+    color: white;
+    font-weight: 700;
+    --ionicon-stroke-width: 50px;
+}
+
+.navegacao-menu ul li a .icon{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 50px;
+    height: 50px;
+}
+
+.navegacao-menu ul li a .icon ion-icon{
+    font-size: 23px;
+}
+
+.navegacao-menu ul li a .title{
+    position: relative;
+    padding-inline: 10px;
+    height: 50px;
+    line-height: 50px;
+}
+
+/* -------- CABEÇALHO -------- */
+header{
+    height: 65px;
+    width: 100%;
+    background-color: #424242;
+    margin-top: -65px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+}
+
+.menu{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 100;
+    color: #FFFFFF;
+}
+
+.menu-button{
+    background: none;
+    border: none;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 200ms ease-out;
+    outline: none;
+}
+
+.menu-button:hover{
+    background-color: #535353;
+}
+
+.menu-button div{
+    background-color: #D9D9D9;
+    width: 30px;
+    height: 2px;
+}
+
+.menu-button div::before{
+    content: '';
+    position: absolute;
+    background-color: #D9D9D9;
+    width: 30px;
+    height: 2px;
+    margin-top: 9px;
+    margin-left: -15px;
+}
+
+.menu-button div::after{
+    content: '';
+    position: absolute;
+    background-color: #D9D9D9;
+    width: 30px;
+    height: 2px;
+    margin-top: -9px;
+    margin-left: -15px;
+}
+
+.logo{
+    width: 45px;
+    height: 45px;
+}
+
+.container-pesquisa{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-voltar{
+    width: 50px;
+    height: 45px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: background-color 200ms ease-out;
+}
+
+.btn-voltar:hover{
+    background-color: #535353;
+}
+
+.pesquisa{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 50vw;
+    height: 32px;
+    padding: 17px 20px;
+    border-radius: 18px;
+    background-color: #D9D9D9;
+}
+
+.pesquisa input{
+    background: none;
+    border: none;
+    width: 100%;
+    height: 32px;
+    font-size: 18px;
+    outline: none;
+    font-weight: 300;
+}
+
+.itens{
+    display: flex;
+    gap: 10px;
+}
+
+.itens a{
+    text-decoration: none;
+    color: white;
+}
+
+.aparece-pesquisa{
+    background: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    display: none;
+    transition: background-color 200ms ease-out;
+}
+
+.aparece-pesquisa:hover{
+    background-color: #535353;
+}
+
+.perfil{
+    background-color: #D9D9D9;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.perfil-menu{
+    position: absolute;
+    background-color: #424242;
+    width: 250px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    right: 65px;
+    padding: 20px;
+    border-radius: 15px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms;
+    transform: translateY(-100px);
+    border: 1px solid black;
+}
+
+.foto-perfil{
+    background-color: #D9D9D9;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    text-align: center;
+    padding-top: 39px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.perfil-menu h5{
+    color: white;
+    font-weight: 300;
+}
+
+.perfil-menu hr{
+    width: 190px;
+    border: 1px solid #872D48;
+    margin-block: 10px;
+}
+
+.perfil-menu .gerenciar{
+    background-color: #313131;
+    width: 170px;
+    height: 30px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    transition: all 100ms ease-out;
+}
+
+.perfil-menu .gerenciar:hover{
+    color: #313131;
+    font-weight: 700;
+    background-color: white;
+}
+
+.sair{
+    background-color: #872D48;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    transition: all 100ms ease-out;
+}
+
+.sair:hover{
+    color: #A94F6A;
+    font-weight: 700;
+    background-color: white;
+}
+
+/* -------- MAIN -------- */
+main{
+    margin-top: 65px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.informacoes{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.foto-usuario{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.foto-usuario label{
+    color: white;
+    font-size: 20px;
+}
+
+.foto{
+    background-color: #D9D9D9;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dado{
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.dado label{
+    font-size: 23px;
+}
+
+.dado hr{
+    border: 1px solid #872D48;
+    width: 60%;
+    margin-block: 10px;
+}
+
+.dado input{
+    background-color: #A44964;
+    border: none;
+    height: 30px;
+    width: 250px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    color: white;
+    padding: 5px;
+    outline: none;
+}
+
+.dado .email{
+    width: 350px;
+}
+
+.dado input::placeholder{
+    color: white;
+}
+
+.dados-usuario{
+    padding: 20px;
+}
+
+.dados-usuario button{
+    background-color: #AD395C;
+    color: white;
+    font-size: 20px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.salvar-alteracoes{
+    font-size: 18px;
+    color: white;
+    background-color: #313131;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 1092px;
+    height: 50px;
+    display: flex;
+    padding-inline: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.botoes{
+    height: 80%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.botoes button{
+    height: 100%;
+    padding-inline: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    color: white;
+}
+
+.botoes button:nth-child(1):hover{
+    background-color: #424242;
+}
+
+.botoes button:nth-child(2){
+    background-color: #AD395C;
+}
+
+.botoes button:nth-child(2):hover{
+    background-color: white;
+    color: #AD395C;
+    font-weight: 500;
+}
+/* -------- RESPONSIVO -------- */
+@media (max-width: 750px) {    
+    .container-pesquisa{
+        display: none;
+    }
+
+    .aparece-pesquisa{
+        display: block;
+    }
+
+    .menu.invisivel, .itens.invisivel{
+        display: none;
+    }
+
+    .container-pesquisa.ativado{
+        display: flex;
+        margin-inline: 10px;
+        width: 100%;
+    }
+
+    .container-pesquisa.ativado .btn-voltar{
+        display: flex;
+    }
+
+    .pesquisa{
+        width: 100%;
+    }
+}
