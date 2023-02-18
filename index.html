@@ -86,7 +86,7 @@ if(isset($_SESSION['usrID'])){
             </button>
             <div class="pesquisa">
                 <img src="src/images/lupa.png" alt="imagem de uma lupa">
-                <input type="text" id="barra-de-pesquisa" placeholder="Pesquise seu livro, autor ou gênero" onkeyup="carregarConteudo(this.value)" />
+                <input type="text" id="barra-de-pesquisa" placeholder="Pesquise seu livro" onkeyup="carregarConteudo(this.value)" />
                 <span id="resultado-pesquisa"></span>
             </div>
         </div>
@@ -130,11 +130,17 @@ if(isset($_SESSION['usrID'])){
 
                 <div class="container-fotos">
                     <div class="fotos">
-                        <img src="src/images/capas/6d0102def818ab9d83d090cced17920f.jpg" alt="">
-                        <img src="src/images/capas/50a7bb5c06f7230ba3ce814f8574c468.png" alt="">
-                        <img src="src/images/capas/a3ce814f8574c46850a7bb5c06f7230b.png" alt="">
-                        <img src="src/images/capas/6d0102def818ab9d83d090cced17920f.jpg" alt="">
-                        <img src="src/images/capas/50a7bb5c06f7230ba3ce814f8574c468.png" alt="">
+                        <?php
+                            $cSQL = "SELECT livCapa FROM livro ORDER BY RAND() LIMIT 5";
+            
+                            $oDados = mysqli_query($oCon, $cSQL);
+
+                            while($capasLivros = mysqli_fetch_assoc($oDados)){
+                                echo "<div>".
+                                "   <img src='src/".$capasLivros['livCapa']."' alt='capa do livro'>".
+                                "</div>";
+                            }
+                        ?>
                     </div>
                 </div>
 
