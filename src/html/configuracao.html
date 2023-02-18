@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/configuracao.js" defer></script>
+    <link rel="shortcut icon" href="../images/ICONE.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/configuracao.css">
+    <title>Configurações</title>
+</head>
+<body>
+    <header>
+        <div class="menu">
+            <img class="logo" src="../images/logo.png" alt="logo do site">
+            <label>Configurações</label>
+        </div>
+
+        <div class="container-pesquisa">
+            <button class="btn-voltar">
+                <img src="../images/voltar.png" alt="seta voltar">
+            </button>
+            <div class="pesquisa">
+                <img src="../images/lupa.png" alt="imagem de uma lupa">
+                <input type="text" placeholder="Configurações de pesquisa" onkeyup="carregarConteudo(this.value)" />
+                <span id="resultado-pesquisa"></span>
+            </div>
+        </div>
+
+        <div class="itens">
+            <button class="aparece-pesquisa">
+                <img src="../images/lupa.png" alt="imagem de uma lupa">
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="opcoes">
+            <ul>
+                <a href="#geral" class="opcao ativado" onclick="mudarOpcao(this)"><li>Geral</li></a>
+                <a href="#contato" class="opcao" onclick="mudarOpcao(this)"><li>Contato</li></a>
+                <a href="#" class="opcao" onclick="mudarOpcao(this)"><li>Sobre</li></a>
+                <a href="#" class="opcao" onclick="mudarOpcao(this)"><li>Diretrizes da comunidade</li></a>
+                <a href="#" class="opcao" onclick="mudarOpcao(this)"><li>Excluir Conta</li></a>
+            </ul>
+        </div>
+
+        <div class="configuracoes">
+            <div class="configuracao" id="geral">
+                <h3>Privacidade</h3>
+                <div>
+                    <h3>Ativar perfil privado</h3>
+                    <div>
+                        <label>Apenas pessoas autorizadas podem ver suas publicações.</label>
+                        <input type="checkbox">
+                    </div>
+                </div>
+            </div>
+            <div class="configuracao">
+                <h3>Preferências</h3>
+                <div>
+                    <div class="container-config">
+                        <h3>Não recomendar livros com conteúdo explícito</h3>
+                        <div>
+                            <label>Obras que contenham sexo, violência e drogas não serão entregues</label>
+                            <input type="checkbox">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="container-config">
+                        <h3>Marcar livros com conteúdo explícito</h3>
+                        <div>
+                            <label>Obras que contenham sexo, violência e drogas serão marcadas com um ícone</label>
+                            <input type="checkbox">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="configuracao" id="contato">
+                <div>
+                    <h3>Email para contato</h3>
+                    <div>
+                        <label>contatonewstory@gmail.com</label>
+                        <img src="../images/e-mail.png" alt="imagem de uma carta">
+                    </div>
+                </div>
+            </div>
+            <div class="configuracao">
+                <div>
+                    <div>
+                        <h3>Relatar problema</h3>
+                        <img src="../images/comentario_2.png" alt="imagem de um comentário">
+                    </div>
+                </div>
+            </div>
+            <div class="configuracao">
+                <h3>Excluir Conta</h3>
+                <label>Exclusão de conta</label>
+                <hr>
+            </div>
+
+            <button>Finalizar sessão</button>
+        </div>
+    </main>
+</body>
+</html>
