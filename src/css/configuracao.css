@@ -1,0 +1,251 @@
+/* -------- CABEÇALHO -------- */
+header{
+    height: 65px;
+    width: 100%;
+    background-color: #424242;
+    margin-top: -65px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+}
+
+.menu{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 100;
+    color: #FFFFFF;
+}
+
+.logo{
+    width: 45px;
+    height: 45px;
+}
+
+.container-pesquisa{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-voltar{
+    width: 50px;
+    height: 45px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: background-color 200ms ease-out;
+}
+
+.btn-voltar:hover{
+    background-color: #535353;
+}
+
+.pesquisa{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 50vw;
+    height: 32px;
+    padding: 17px 20px;
+    border-radius: 18px;
+    background-color: #D9D9D9;
+}
+
+.pesquisa input{
+    background: none;
+    border: none;
+    width: 100%;
+    height: 32px;
+    font-size: 18px;
+    outline: none;
+    font-weight: 300;
+}
+
+.aparece-pesquisa{
+    background: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    display: none;
+    transition: background-color 200ms ease-out;
+}
+
+.aparece-pesquisa:hover{
+    background-color: #535353;
+}
+
+/* -------- MAIN -------- */
+main{
+    margin-top: 65px;
+    height: calc(100vh - 65px);
+    display: flex;
+}
+
+.opcoes{
+    min-width: 250px;
+    border-right: 1px solid black;
+}
+
+.opcoes ul{
+    list-style: none;
+    height: 100%;
+    padding: 40px 50px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+}
+
+.opcoes a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.opcoes .ativado{
+    color: white;
+}
+
+.opcoes li{
+    width: 100%;
+    font-weight: 500;
+}
+
+.opcoes li:hover{
+    color: white;
+}
+
+.configuracoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+.configuracao{
+    width: 500px;
+    margin-top: 30px;
+    padding-top: 10px;
+    color: white;
+}
+
+.configuracao h3{
+    font-weight: 500;
+}
+
+.configuracao > div{
+    background-color: #2e2e2e;
+    margin-top: 8px;
+    padding: 10px 20px;
+    border-radius: 7px;
+}
+
+.configuracao .container-config{
+    display: block;
+}
+
+.configuracao > div div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.configuracao > div div img{
+    width: 40px;
+}
+
+.configuracao label{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.configuracao input[type=checkbox]{
+    appearance: none;
+    min-width: 60px;
+    height: 30px;
+    background-color: #5A5757;
+    border-radius: 10px;
+    border: 1px solid white;
+    position: relative;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.configuracao input[type=checkbox]::before{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #D9D9D9;
+    border-radius: 100%;
+    margin-top: 4px;
+    margin-left: 5px;
+    transition: all 200ms;
+}
+
+.configuracao input[type=checkbox]:checked{
+    background-color: #EE2F67;
+}
+
+.configuracao input[type=checkbox]:checked::before{
+    margin-left: 34px;
+}
+
+.configuracao hr{
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-block: 10px;
+}
+
+.configuracoes button{
+    margin-top: 30px;
+    margin-bottom: 300px;
+    font-size: 20px;
+    padding: 10px 70px;
+    background-color: #D44670;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+/* -------- RESPONSIVO -------- */
+@media (max-width: 575px) {    
+    .container-pesquisa{
+        display: none;
+    }
+
+    .aparece-pesquisa{
+        display: block;
+    }
+
+    .menu.invisivel, .itens.invisivel{
+        display: none;
+    }
+
+    .container-pesquisa.ativado{
+        display: flex;
+        margin-inline: 10px;
+        width: 100%;
+    }
+
+    .container-pesquisa.ativado .btn-voltar{
+        display: flex;
+    }
+
+    .pesquisa{
+        width: 100%;
+    }
+}

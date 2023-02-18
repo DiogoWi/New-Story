@@ -1,0 +1,86 @@
+/* -------- CORPO PRINCIPAL -------- */
+/* -------- RESULTADO DA PESQUISA -------- */
+main{
+    margin-top: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2{
+    margin-block: 45px;
+    color: white;
+}
+
+.livros{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-evenly;
+    max-width: 1366px;
+    margin-inline: 40px;
+}
+
+.livro{
+    margin-bottom: 30px;
+}
+
+.livro div{
+    background-color: #525252;
+    height: 280px;
+    aspect-ratio: 3 / 4;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.livro div img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.livro button{
+    width: 100%;
+    height: 43px;
+    font-size: 24px;
+    color: white;
+    background-color: #D44670;
+    border: none;
+    cursor: pointer;
+    transition: background-color 200ms ease-out;
+}
+
+.livro button:hover{
+    background-color: white;
+    color: #D44670;
+}
+
+.mascote{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.mascote img{
+    width: 150px;
+}
+
+.mascote label{
+    font-size: 18px;
+    font-weight: bolder;
+    color: white;
+}
+
+/* -------- RESPONSIVO -------- */
+@media (max-width: 445px) {
+    .menu{
+        font-size: 17px;
+    }
+
+    .logo{
+        width: 35px;
+        height: 35px;
+    }
+}

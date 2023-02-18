@@ -1,356 +1,18 @@
-body{
-    background-color: #424242;
+main{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* -------- CABEÇALHO -------- */
-.navegacao{
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: calc(100vh - 65px);
     margin-top: 65px;
-    position: fixed;
-    transition: all 400ms;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.navegacao-menu{
-    background-color: #424242;
-    width: 100%;
-    max-width: 280px;
-    height: 100%;
-    transform: translateX(-280px);
-    transition: transform 300ms;
-    overflow: hidden;
-}
-
-.navegacao-menu ul{
-    position: absolute;
-    width: calc(100% - 20px);
-    list-style: none;
-    margin-left: 20px;
-}
-
-.navegacao-menu ul li{
-    position: relative;
-    width: 100%;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-}
-
-.navegacao-menu ul li:hover{
-    background-color: #872D48;
-}
-
-.navegacao-menu ul li:hover::before{
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
-    border-bottom-right-radius: 20px;
-    box-shadow: 7.5px 7.5px 0 7.5px #872D48;
-}
-
-.navegacao-menu ul li:hover::after{
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
-    border-top-right-radius: 20px;
-    box-shadow: 7.5px -7.5px 0 7.5px #872D48;
-}
-
-.navegacao-menu ul li a{
-    position: relative;
-    display: block;
-    width: 100%;
-    display: flex;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.navegacao-menu ul li:hover a{
-    color: white;
-    font-weight: 700;
-    --ionicon-stroke-width: 50px;
-}
-
-.navegacao-menu ul li a .icon{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 50px;
-    height: 50px;
-}
-
-.navegacao-menu ul li a .icon ion-icon{
-    font-size: 23px;
-}
-
-.navegacao-menu ul li a .title{
-    position: relative;
-    padding-inline: 10px;
-    height: 50px;
-    line-height: 50px;
-}
-
-header{
-    height: 65px;
-    width: 100%;
-    background-color: #424242;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    position: fixed;
-}
-
-.menu{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    font-size: 24px;
-    font-weight: 100;
-    color: #FFFFFF;
-}
-
-.menu-button{
-    background: none;
-    border: none;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 200ms ease-out;
-}
-
-.menu-button:hover{
-    background-color: #535353;
-}
-
-.menu-button div{
-    background-color: #D9D9D9;
-    width: 30px;
-    height: 2px;
-}
-
-.menu-button div::before{
-    content: '';
-    position: absolute;
-    background-color: #D9D9D9;
-    width: 30px;
-    height: 2px;
-    margin-top: 9px;
-    margin-left: -15px;
-}
-
-.menu-button div::after{
-    content: '';
-    position: absolute;
-    background-color: #D9D9D9;
-    width: 30px;
-    height: 2px;
-    margin-top: -9px;
-    margin-left: -15px;
-}
-
-.logo{
-    width: 45px;
-    height: 45px;
-}
-
-.container-pesquisa{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.btn-voltar{
-    width: 50px;
-    height: 45px;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    border: none;
-    border-radius: 100%;
-    cursor: pointer;
-    transition: background-color 200ms ease-out;
-}
-
-.btn-voltar:hover{
-    background-color: #535353;
-}
-
-.pesquisa{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    width: 50vw;
-    height: 32px;
-    padding: 17px 20px;
-    border-radius: 18px;
-    background-color: #D9D9D9;
-}
-
-.pesquisa input{
-    background: none;
-    border: none;
-    width: 100%;
-    height: 32px;
-    font-size: 18px;
-    outline: none;
-    font-weight: 300;
-}
-
-.itens{
-    display: flex;
-    gap: 10px;
-}
-
-.itens ul{
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #FFFFFF;
-}
-
-.itens li{
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.itens li:hover{
-    background-color: #535353;
-}
-
-.itens a{
-    text-decoration: none;
-    color: white;
-}
-
-.aparece-pesquisa{
-    background: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 100%;
-    border: none;
-    cursor: pointer;
-    display: none;
-    transition: background-color 200ms ease-out;
-}
-
-.aparece-pesquisa:hover{
-    background-color: #535353;
-}
-
-.perfil{
-    background-color: #D9D9D9;
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 100%;
-    cursor: pointer;
-}
-
-.perfil-menu{
-    position: absolute;
-    background-color: #424242;
-    width: 250px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    right: 65px;
-    padding: 20px;
-    border-radius: 15px;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 300ms;
-    transform: translateY(-100px);
-    border: 1px solid black;
-}
-
-.foto-perfil{
-    background-color: #D9D9D9;
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    text-align: center;
-    padding-top: 39px;
-    margin-bottom: 10px;
-    font-size: 13px;
-}
-
-.perfil-menu h5{
-    color: white;
-    font-weight: 300;
-}
-
-.perfil-menu hr{
-    width: 190px;
-    border: 1px solid #872D48;
-    margin-block: 10px;
-}
-
-.perfil-menu .gerenciar{
-    background-color: #313131;
-    width: 170px;
-    height: 30px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    transition: all 100ms ease-out;
-}
-
-.perfil-menu .gerenciar:hover{
-    color: #313131;
-    font-weight: 700;
-    background-color: white;
-}
-
-.sair{
-    background-color: #872D48;
-    width: 100px;
-    height: 30px;
-    border-radius: 5px;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    transition: all 100ms ease-out;
-}
-
-.sair:hover{
-    color: #A94F6A;
-    font-weight: 700;
-    background-color: white;
+    padding-top: 20px;
 }
 
 /* -------- SEÇÃO LIVRO -------- */
 .livro{
-    margin-top: 75px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 1005px;
+    width: 100%;
 }
 
 .livro > hr{
@@ -385,29 +47,39 @@ header{
     background-color: #D9D9D9;
     width: 75px;
     height: 75px;
-    text-align: center;
-    padding-top: 25px;
+    display: flex;
+    cursor: pointer;
+}
+
+.fotos div img{
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
 }
 
 .foto-principal{
     background-color: #D9D9D9;
-    width: 546px;
-    height: 709px;
+    height: 700px;
+    aspect-ratio: 3 / 4;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 50px;
+    justify-content: center;
 }
 
-.foto-principal button{
-    background: none;
-    border: none;
-    cursor: pointer;
+.foto-principal img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container-livro > div:nth-child(2){
+    display: flex;
+    gap: 10px;
 }
 
 .dados-livro{
     width: 320px;
     color: white;
+    flex-direction: column;
 }
 
 .dados-livro h1{
@@ -430,15 +102,22 @@ header{
     font-size: 19px;
     height: 187px;
     margin-bottom: 5px;
+    word-break: break-word;
     overflow-y: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
 }
 
-.dados-livro #ver-mais{
+#ver-mais{
     color: #C53660;
     display: block;
     width: max-content;
-    margin-bottom: 30px;
     cursor: pointer;
+}
+
+#ver-mais.invisivel{
+    display: none;
 }
 
 .dados-livro button{
@@ -446,11 +125,12 @@ header{
     height: 80px;
     background-color: #C7426A;
     border: none;
+    margin-top: 30px;
     color: white;
     font-size: 30px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 200ms ease-out;
+    transition: all 200ms;
 }
 
 .dados-livro button:hover{
@@ -458,24 +138,47 @@ header{
     color: #C7426A;
 }
 
+.dados-livro button:hover, .favorito:not(){
+    background-color: white;
+    color: #C7426A;
+}
+
+.container-livro div a{
+    height: 40px;
+    width: 40px;
+}
+
+.favorito{
+    background: none;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
 .autor{
-    width: 77%;
+    max-width: 780px;
+    width: 100%;
     display: flex;
     gap: 10px;
 }
 
 .foto-autor{
-    background-color: #D9D9D9;
+    background-color: #313131;
     width: 80px;
     height: 80px;
     border-radius: 100%;
-    text-align: center;
-    padding-top: 30px;
-    font-size: 20px;
+    overflow: hidden;
+}
+
+.foto-autor img{
+    width: 100%;
+    height: 100%;
 }
 
 .descricao{
-    height: 100px;
+    max-width: 690px;
+    width: 100%;
     color: white;
 }
 
@@ -493,6 +196,11 @@ header{
 .descricao p{
     font-size: 16px;
     margin-bottom: 5px;
+    height: 103px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 
 .comentario{
@@ -515,16 +223,23 @@ header{
 }
 
 .escrever .perfil{
-    background-color: #D9D9D9;
+    background-color: #B9ADAD;
     width: 70px;
     height: 70px;
     border-radius: 100%;
-    text-align: center;
-    padding-top: 25px;
+    cursor: initial;
+}
+
+.escrever > div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    width: 100%;
 }
 
 .escrever textarea{
-    width: 500px;
+    width: 100%;
     font-size: 15px;
     background: none;
     border: none;
@@ -540,17 +255,50 @@ header{
     color: white;
 }
 
+.escrever .sem-conta{
+    border-bottom: 2px solid #777777;
+    cursor: not-allowed;
+}
+
+.escrever .sem-conta::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.botoes{
+    flex-direction: row-reverse;
+    gap: 10px;
+    display: none;
+}
+
+.botoes button{
+    padding: 5px 10px;
+    outline: none;
+    font-size: 15px;
+    border: none;
+    border-radius: 15px;
+    background: none;
+    color: white;
+    cursor: pointer;
+    transition: all 200ms;
+}
+
+.botoes button:hover{
+    background-color: #C53660;
+}
+
 .container-comentarios{
     display: flex;
     flex-direction: column;
     gap: 30px;
+    padding-inline: 20px;
 }
 
 .comentarios{
     background-color: #D9D9D9;
-    width: 600px;
-    height: 200px;
+    max-width: 600px;
+    width: 100%;
     display: flex;
+    gap: 10px;
     padding: 15px;
     border-radius: 10px;
     justify-content: space-between;
@@ -561,13 +309,16 @@ header{
     width: 120px;
     height: 120px;
     border-radius: 100%;
-    text-align: center;
-    padding-top: 45px;
-    font-size: 25px;
+    overflow: hidden;
+}
+
+.foto-usuario img{
+    width: 100%;
+    height: 100%;
 }
 
 .dados-usuario{
-    width: 55%;
+    width: calc(100% - 130px);
 }
 
 .dados-usuario label{
@@ -579,6 +330,7 @@ header{
 
 .dados-usuario p{
     font-size: 17px;
+    word-break: break-word;
 }
 
 .interacoes{
@@ -602,30 +354,80 @@ header{
 }
 
 /* -------- RESPONSIVO -------- */
-@media (max-width: 750px) {    
-    header .container-pesquisa{
-        display: none;
+@media (max-width: 1025px) {
+    .foto-principal{
+        height: 500px;
+    }
+}
+
+@media (max-width: 880px) {
+    .foto-principal{
+        height: 400px;
+    }
+}
+
+@media (max-width: 790px) {
+    .container-livro{
+        flex-direction: column;
     }
 
-    header .aparece-pesquisa{
-        display: block;
+    .dados-livro{
+        width: 335px;
     }
 
-    .menu.invisivel, .itens.invisivel{
-        display: none;
+    .comentario{
+        padding: 0;
     }
 
-    .container-pesquisa.ativado{
-        display: flex;
-        margin-inline: 10px;
-        width: 100%;
+    .comentario h1{
+        margin-top: 40px;
+        margin-left: 40px;
     }
 
-    .container-pesquisa.ativado .btn-voltar{
-        display: flex;
+    .escrever{
+        padding: 10px;
     }
 
-    header .pesquisa{
-        width: 100%;
+    .autor{
+        padding: 15px;
+        flex-direction: column;
+    }
+
+    .container-comentarios{
+        margin-bottom: 40px;
+    }
+
+    .slider-livro{
+        flex-direction: column-reverse;
+    }
+
+    .fotos{
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 610px) {
+    .escrever{
+        flex-direction: column;
+    }
+
+    .foto-usuario{
+        width: 70px;
+        height: 70px;
+    }
+
+    .dados-usuario{
+        width: calc(100% - 80px);
+    }
+}
+
+@media (max-width: 445px) {
+    .menu{
+        font-size: 17px;
+    }
+
+    .logo{
+        width: 35px;
+        height: 35px;
     }
 }

@@ -8,8 +8,12 @@
     font-weight: 300;
 }
 
+body{
+    background-color: #424242;
+}
+
 ::-webkit-scrollbar{
-    background-color: #313131;
+    background-color: #202020;
     width: 10px;
 }
 
