@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+$oCon = mysqli_connect('localhost', 'root', '', 'new story');
+if(isset($_SESSION['usrID'])){
+    $cSQL = "SELECT * FROM usuario WHERE usrID = ".$_SESSION['usrID'];
+                
+    $oDados = mysqli_query($oCon, $cSQL);
+    $vReg = mysqli_fetch_assoc($oDados);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -9,9 +17,11 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
+    <script src="src/js/nav-header.js" defer></script>
     <script src="src/js/index.js" defer></script>
     <link rel="shortcut icon" href="src/images/ICONE.png" type="image/x-icon">
     <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/nav-header.css">
     <link rel="stylesheet" href="src/css/index.css">
     <title>New Story</title>
 </head>
@@ -29,7 +39,7 @@ session_start();
                 if(isset($_SESSION['usrID'])){
                 ?>
                 <li>
-                    <a href="#">
+                    <a href="src/html/configuracao.html" target="_blank">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="title">Configurações</span>
                     </a>
@@ -41,20 +51,20 @@ session_start();
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="src/php/favoritos-tela.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="title">Favoritos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="duplicate-outline"></ion-icon></span>
-                        <span class="title">Autores seguidos</span>
                     </a>
                 </li>
                 <?php
                 }
                 ?>
+                <li>
+                    <a href="src/php/sobre.php">
+                        <span class="icon"><ion-icon name="information-circle-outline"></ion-icon></span>
+                        <span class="title">Sobre</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -64,8 +74,10 @@ session_start();
             <button class="menu-button" id="menu-button">
                 <div></div>
             </button>
-            <img class="logo" src="src/images/logo.png" alt="logo do site">
-            <label>New Story</label>
+            <a href="index.php">
+                <img class="logo" src="src/images/logo.png" alt="logo do site">
+                <label>New Story</label>
+            </a>
         </div>
 
         <div class="container-pesquisa">
@@ -74,7 +86,7 @@ session_start();
             </button>
             <div class="pesquisa">
                 <img src="src/images/lupa.png" alt="imagem de uma lupa">
-                <input type="text" placeholder="Pesquise seu livro, autor ou gênero" onkeyup="carregarConteudo(this.value)" />
+                <input type="text" id="barra-de-pesquisa" placeholder="Pesquise seu livro, autor ou gênero" onkeyup="carregarConteudo(this.value)" />
                 <span id="resultado-pesquisa"></span>
             </div>
         </div>
@@ -95,13 +107,12 @@ session_start();
             }
             else{
             ?>
-            <button class="perfil"></button>
+            <button class="perfil"><img src="src/<?php echo $vReg['usrFoto'] ?>" alt="foto de perfil"></button>
             <div class="perfil-menu">
-                <div class="foto-perfil">Foto de perfil</div>
-                <h5>Olá, <?php echo $_SESSION['usrNome'] ?></h5>
+                <div class="foto-perfil"><img src="src/<?php echo $vReg['usrFoto'] ?>" alt="foto de perfil"></div>
+                <h5>Olá, <?php echo $vReg['usrNome'] ?></h5>
                 <hr>
-                <a class="gerenciar" href="src/html/gerenciar-conta.html">Gerenciar sua Conta</a>
-                <a class="gerenciar" href="#">Gerenciar seus Livros</a>
+                <a class="gerenciar" href="src/php/perfil.php?usuario=<?php echo $_SESSION['usrID'] ?>">Minha Conta</a>
                 <a class="sair" href="src/php/logout.php">Sair</a>
             </div>
             <?php
@@ -111,32 +122,38 @@ session_start();
     </header>
 
     <main>
-        <section class="slider-livro">
-            <div class="setas">
-                <button>
+        <section class="carrossel-livro">
+            <div class="container">
+                <button class="seta">
                     <img src="src/images/seta-esquerda.png" alt="seta esquerda">
                 </button>
 
-                <label>Livros que estão em andamento</label>
+                <div class="container-fotos">
+                    <div class="fotos">
+                        <img src="src/images/capas/6d0102def818ab9d83d090cced17920f.jpg" alt="">
+                        <img src="src/images/capas/50a7bb5c06f7230ba3ce814f8574c468.png" alt="">
+                        <img src="src/images/capas/a3ce814f8574c46850a7bb5c06f7230b.png" alt="">
+                        <img src="src/images/capas/6d0102def818ab9d83d090cced17920f.jpg" alt="">
+                        <img src="src/images/capas/50a7bb5c06f7230ba3ce814f8574c468.png" alt="">
+                    </div>
+                </div>
 
-                <button>
+                <button class="seta">
                     <img src="src/images/seta-direita.png" alt="seta direita">
                 </button>
             </div>
 
             <div class="imagens">
-                <div class="selecao"></div>
-                <div class="selecao"></div>
-                <div class="selecao"></div>
-                <div class="selecao"></div>
-                <div class="selecao"></div>
+                <div class="selecao selecionado" onclick="escolheImagem('1')"></div>
+                <div class="selecao" onclick="escolheImagem('2')"></div>
+                <div class="selecao" onclick="escolheImagem('3')"></div>
+                <div class="selecao" onclick="escolheImagem('4')"></div>
+                <div class="selecao" onclick="escolheImagem('5')"></div>
             </div>
         </section>
 
         <section class="livros">
             <?php
-                //$oCon = mysqli_connect('localhost', 'root', '', 'new story');
-                $oCon = mysqli_connect('localhost', 'id19604355_diogo', '<+fucHF3_TDjDDgf', 'id19604355_new_story');
                 $cSQL = "SELECT livID, livCapa FROM livro";
             
                 $oDados = mysqli_query($oCon, $cSQL);
