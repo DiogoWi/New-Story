@@ -1,9 +1,15 @@
 <?php
-session_start();
+    session_start();
 
-if(!isset($_SESSION['usrID'])){
-    header('location: ../../index.php');
-}
+    if(!isset($_SESSION['usrID'])){
+        header('location: ../../index.php');
+    }
+
+    $oCon = mysqli_connect('localhost', 'root', '', 'new story');
+    $cSQL = "SELECT * FROM usuario WHERE usrID = ".$_SESSION['usrID'];
+                
+    $oDados = mysqli_query($oCon, $cSQL);
+    $vReg = mysqli_fetch_assoc($oDados);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -14,8 +20,10 @@ if(!isset($_SESSION['usrID'])){
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" defer></script>
     <script src="../js/cadastro-livro-tela.js" defer></script>
+    <script src="../js/nav-header.js" defer></script>
     <link rel="shortcut icon" href="../images/ICONE.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/nav-header.css">
     <link rel="stylesheet" href="../css/cadastro-livro-tela.css">
     <title>New Story</title>
 </head>
@@ -30,7 +38,7 @@ if(!isset($_SESSION['usrID'])){
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../html/configuracao.html" target="_blank">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="title">Configurações</span>
                     </a>
@@ -42,15 +50,15 @@ if(!isset($_SESSION['usrID'])){
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="favoritos-tela.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="title">Favoritos</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="duplicate-outline"></ion-icon></span>
-                        <span class="title">Autores seguidos</span>
+                    <a href="sobre.php">
+                        <span class="icon"><ion-icon name="information-circle-outline"></ion-icon></span>
+                        <span class="title">Sobre</span>
                     </a>
                 </li>
             </ul>
@@ -62,8 +70,10 @@ if(!isset($_SESSION['usrID'])){
             <button class="menu-button" id="menu-button">
                 <div></div>
             </button>
-            <img class="logo" src="../images/logo.png" alt="logo do site">
-            <label>New Story</label>
+            <a href="../../index.php">
+                <img class="logo" src="../images/logo.png" alt="logo do site">
+                <label>New Story</label>
+            </a>
         </div>
 
         <div class="container-pesquisa">
@@ -72,7 +82,8 @@ if(!isset($_SESSION['usrID'])){
             </button>
             <div class="pesquisa">
                 <img src="../images/lupa.png" alt="imagem de uma lupa">
-                <input type="text" placeholder="Pesquise seu livro, autor ou gênero">
+                <input type="text" id="barra-de-pesquisa" placeholder="Pesquise seu livro" onkeyup="carregarConteudo(this.value)" />
+                <span id="resultado-pesquisa"></span>
             </div>
         </div>
 
@@ -81,13 +92,12 @@ if(!isset($_SESSION['usrID'])){
                 <img src="../images/lupa.png" alt="imagem de uma lupa">
             </button>
 
-            <button class="perfil"></button>
+            <button class="perfil"><img src="../<?php echo $vReg['usrFoto'] ?>" alt="foto de perfil"></button>
             <div class="perfil-menu">
-                <div class="foto-perfil">Foto de perfil</div>
-                <h5>Olá, <?php echo $_SESSION['usrNome'] ?></h5>
+                <div class="foto-perfil"><img src="../<?php echo $vReg['usrFoto'] ?>" alt="foto de perfil"></div>
+                <h5>Olá, <?php echo $vReg['usrNome'] ?></h5>
                 <hr>
-                <a class="gerenciar" href="#">Gerenciar sua Conta</a>
-                <a class="gerenciar" href="#">Gerenciar seus Livros</a>
+                <a class="gerenciar" href="perfil.php?usuario=<?php echo $_SESSION['usrID'] ?>">Minha Conta</a>
                 <a class="sair" href="logout.php">Sair</a>
             </div>
         </div>
@@ -98,16 +108,28 @@ if(!isset($_SESSION['usrID'])){
             <section class="fotos-livro">
                 <div class="slider-livro">
                     <div class="fotos">
-                        <div>Foto</div>
-                        <div>Foto</div>
-                        <div>Foto</div>
-                        <div>Foto</div>
+                        <div id="campo1" onclick="adicionarFoto('foto1')">
+                            <input type="file" name="foto1" id="inputfoto1" accept="image/*">
+
+                            <img src="../images/sinal-mais.png" id="imagefoto1" alt="adicionar foto">
+                        </div>
+                        <div id="campo2" onclick="adicionarFoto('foto2')">
+                            <input type="file" name="foto2" id="inputfoto2" accept="image/*">
+
+                            <img src="../images/sinal-mais.png" id="imagefoto2" alt="adicionar foto">
+                        </div>
+                        <div id="campo3" onclick="adicionarFoto('foto3')">
+                            <input type="file" name="foto3" id="inputfoto3" accept="image/*">
+
+                            <img src="../images/sinal-mais.png" id="imagefoto3" alt="adicionar foto">
+                        </div>
                     </div>
         
                     <div class="foto-principal">
-                        <input type="file" id="imagem-capa" name="capa" accept="image/*">
+                        <input type="file" id="imagem-capa" name="capa" accept="image/*" required>
         
                         <img src="../images/add-imagem.png" id="capa" alt="adicionar capa">
+                        <label>Resolução mínima recomendada: 525x700 px</label>
                     </div>
                 </div>
             </section>
@@ -122,10 +144,9 @@ if(!isset($_SESSION['usrID'])){
                     <div class="dado">
                         <label>Gênero</label>
                         <hr>
-                        <select name="txtGenero">
+                        <select name="txtGenero" required>
                             <option value="" selected>(selecione um gênero)</option>
                             <?php
-                                $oCon = mysqli_connect('localhost', 'root', '', 'new story');
                                 $cSQL = "SELECT ctgID, ctgTipo FROM categoria ORDER BY ctgTipo";
                             
                                 $oDados = mysqli_query($oCon, $cSQL);
@@ -164,9 +185,15 @@ if(!isset($_SESSION['usrID'])){
                     </div>
                 </div>
                 <div class="dado link-campo">
-                    <label>Link de compra</label>
-                    <hr>
-                    <input type="url" placeholder="Cole o link de onde o livro possa ser comprado"></input>
+                    <div class="a-venda">
+                        <input type="checkbox" name="venda" id="checkbox">
+                        <label for="checkbox">A venda</label>
+                    </div>
+                    <div class="link">
+                        <label>Link de compra</label>
+                        <hr>
+                        <input type="url" placeholder="Cole o link de onde o livro possa ser comprado" name="link"></input>
+                    </div>
                 </div>
                 <button>Publicar</button>
             </div>

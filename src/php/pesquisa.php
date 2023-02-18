@@ -8,15 +8,25 @@
     if(!empty($pesquisa)){
         $cSQL = "SELECT livID, livNome FROM livro WHERE livNome LIKE '%".$pesquisa."%' LIMIT 10;";
         $oDados = mysqli_query($oCon, $cSQL);
-
-        while($vReg = mysqli_fetch_assoc($oDados)){
+        
+        if($vReg = mysqli_fetch_assoc($oDados)){
             $dados[] = [
                 'id' => $vReg['livID'],
                 'nome' => $vReg['livNome']
             ];
-        }
 
-        $retorna = ['erro' => false, 'menssagem' => $dados];
+            while($vReg = mysqli_fetch_assoc($oDados)){
+                $dados[] = [
+                    'id' => $vReg['livID'],
+                    'nome' => $vReg['livNome']
+                ];
+            }
+
+            $retorna = ['erro' => false, 'dados' => $dados];
+        }
+        else{
+            $retorna = ['erro' => true, 'menssagem' => "Erro: Nenhuma pesquisa encontrada!"];
+        }
     }
     else{
         $retorna = ['erro' => true, 'menssagem' => "Erro: Nenhuma pesquisa encontrada!"];
